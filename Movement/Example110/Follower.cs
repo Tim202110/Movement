@@ -24,13 +24,20 @@ namespace Movement
 	class Follower : SpriteNode
 	{
 		// your private fields here (add Velocity, Acceleration, and MaxSpeed)
-
+		// Velocity
+		Vector2 Velocity;
+	     // Acceleration
+		Vector2 Acceleration;
+		// MaxSpeed
+		float MaxSpeed = 1000f;
 
 		// constructor + call base constructor
 		public Follower() : base("resources/ball.png")
 		{
 			Position = new Vector2(Settings.ScreenSize.X / 2, Settings.ScreenSize.Y / 2);
 			Color = Color.GREEN;
+			Velocity = new Vector2(0f, 0f);
+			Acceleration = new Vector2(-40f, 30f);
 		}
 
 		// Update is called every frame
@@ -49,7 +56,8 @@ namespace Movement
 			Position = mouse; // incorrect!!
 
 			// TODO implement
-			// Position += Velocity * deltaTime;
+			Velocity += Acceleration * deltaTime;
+			Position += Velocity * deltaTime;
 		}
 
 		private void BounceEdges()
