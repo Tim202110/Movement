@@ -20,12 +20,8 @@ Methods:
 
 namespace Movement
 {
-	class MovingBall : SpriteNode
+	class MovingBall : MoverNode
 	{
-		// your private fields here (add Velocity)
-		Vector2 Velocity;
-
-
 		// constructor + call base constructor
 		public MovingBall() : base("resources/bigball.png")
 		{
@@ -40,39 +36,5 @@ namespace Movement
 			Move(deltaTime);
 			BounceEdges();
 		}
-
-		// your own private methods
-		private void Move(float deltaTime)
-		{
-			// TODO implement
-			Position += Velocity * deltaTime;
-		}
-
-		private void BounceEdges()
-		{
-			float scr_width = Settings.ScreenSize.X;
-			float scr_height = Settings.ScreenSize.Y;
-			float spr_width = TextureSize.X;
-			float spr_height = TextureSize.Y;
-
-			// TODO implement...
-			if (Position.X > scr_width - spr_width / 2)
-			{
-				Velocity.X *= -1;
-			}
-			if (Position.X < 0 + spr_width / 2)
-			{
-				Velocity.X *= -1;
-			}
-			if (Position.Y > scr_height - spr_height / 2)
-			{
-				Velocity.Y *= -1;
-			}
-			if (Position.Y < 0 + spr_height / 2)
-			{
-				Velocity.Y *= -1;
-			}
-		}
-
 	}
 }

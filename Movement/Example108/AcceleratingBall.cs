@@ -20,13 +20,9 @@ Methods:
 
 namespace Movement
 {
-	class AcceleratingBall : SpriteNode
+	class AcceleratingBall : MoverNode
 	{
 		// your private fields here (add Velocity, Acceleration, and MaxSpeed)
-		// Velocity
-		Vector2 Velocity;
-	     // Acceleration
-		Vector2 Acceleration;
 		// MaxSpeed
 		float MaxSpeed = 1000f;
 
@@ -43,24 +39,11 @@ namespace Movement
 		public override void Update(float deltaTime)
 		{
 			Move(deltaTime);
-			RespEdges();
-		}
-
-		// your own private methods
-		private void Move(float deltaTime)
-		{
+			WrapEdges();
 			
-			Velocity += Acceleration * deltaTime;
-		     //-                                         - Maxspeed import goes here
-			Position += Velocity * deltaTime;
-			 /*//---------------------------------------\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-			////ASK HOW TO IMPORT MAXSPEED ON VELOCITY!!!\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-			\\\\-----------------------------------------//////////////////////////////
-			 \\\\---------------------------------------////////////////////////////*/
-
 		}
 
-		private void RespEdges()
+		private void WrapEdges()
 		{
 			float scr_width = Settings.ScreenSize.X;
 			float scr_height = Settings.ScreenSize.Y;
