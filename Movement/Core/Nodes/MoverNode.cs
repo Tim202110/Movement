@@ -6,6 +6,7 @@ namespace Movement
 	{
 		private Vector2 velocity;
 		private Vector2 acceleration;
+		protected float MaxSpeed;
 		private float mass;
 
 		public Vector2 Velocity { 
@@ -41,7 +42,7 @@ namespace Movement
 			Velocity += Acceleration * deltaTime;
 			Position += Velocity * deltaTime;
 			// Reset acceleration
-			Acceleration *= 0.0f;
+
 		}
 
 		protected void AddForce(Vector2 force)
@@ -49,6 +50,14 @@ namespace Movement
 			Acceleration += force / Mass;
 		}
 
+		protected void limit()
+		{
+			if(Velocity.Length() > MaxSpeed)
+			{
+				Acceleration = new Vector2();
+			}
+		}
+		
 		protected void BounceEdges()
 		{
 			float scr_width = Settings.ScreenSize.X;
@@ -72,7 +81,33 @@ namespace Movement
 			{
 				velocity.Y *= -1;
 			}
-
 	     }
+
+		protected void WrapEdges()
+		{
+			float scr_width = Settings.ScreenSize.X;
+			float scr_height = Settings.ScreenSize.Y;
+			float spr_width = TextureSize.X;
+			float spr_height = TextureSize.Y;
+
+			// TODO implement...
+
+			if (Position.X > scr_width)
+			{
+				Position.X = 0;
+			}
+			if (Position.X < 0)
+			{
+				Position.X = scr_width;
+			}
+			if (Position.Y > scr_height)
+			{
+				Position.Y = 0;
+			}
+			if (Position.Y < 0)
+			{
+				Position.Y = scr_height;
+			}
+		}
      }
 }

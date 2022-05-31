@@ -1,6 +1,6 @@
+using System;
 using System.Numerics; // Vector2
 using Raylib_cs; // Color
-
 /*
 In this class, we have the properties:
 
@@ -23,8 +23,6 @@ namespace Movement
 	class AcceleratingBall : MoverNode
 	{
 		// your private fields here (add Velocity, Acceleration, and MaxSpeed)
-		// MaxSpeed
-		float MaxSpeed = 1000f;
 
 		// constructor + call base constructor
 		public AcceleratingBall() : base("resources/ball.png")
@@ -33,6 +31,7 @@ namespace Movement
 			Color = Color.RED;
 			Velocity = new Vector2(0f, 0f);
 			Acceleration = new Vector2(-40f, 30f);
+			MaxSpeed = 1000f;
 		}
 
 		// Update is called every frame
@@ -40,35 +39,9 @@ namespace Movement
 		{
 			Move(deltaTime);
 			WrapEdges();
-			
-		}
+		     Console.WriteLine(Velocity.Length());
 
-		private void WrapEdges()
-		{
-			float scr_width = Settings.ScreenSize.X;
-			float scr_height = Settings.ScreenSize.Y;
-			float spr_width = TextureSize.X;
-			float spr_height = TextureSize.Y;
-
-			// TODO implement...
-
-			if (Position.X > scr_width)
-			{
-				Position.X = 0;
-			}
-			if (Position.X < 0)
-			{
-				Position.X = scr_width;
-			}
-			if (Position.Y > scr_height)
-			{
-				Position.Y = 0;
-			}
-			if (Position.Y < 0)
-			{
-				Position.Y = scr_height;
-			}
-
+			limit();
 		}
 
 	}

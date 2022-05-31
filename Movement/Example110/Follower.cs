@@ -21,15 +21,9 @@ Methods:
 
 namespace Movement
 {
-	class Follower : SpriteNode
+	class Follower : MoverNode
 	{
 		// your private fields here (add Velocity, Acceleration, and MaxSpeed)
-		// Velocity
-		Vector2 Velocity;
-	     // Acceleration
-		Vector2 Acceleration;
-		// MaxSpeed
-		float MaxSpeed = 1000f;
 
 		// constructor + call base constructor
 		public Follower() : base("resources/ball.png")
@@ -38,6 +32,7 @@ namespace Movement
 			Color = Color.GREEN;
 			Velocity = new Vector2(0f, 0f);
 			Acceleration = new Vector2(-40f, 30f);
+			MaxSpeed = 1000f;
 		}
 
 		// Update is called every frame
@@ -59,20 +54,7 @@ namespace Movement
 			Velocity += Acceleration * deltaTime;
 			Position += Velocity * deltaTime;
 		}
-
-		private void BounceEdges()
-		{
-			float scr_width = Settings.ScreenSize.X;
-			float scr_height = Settings.ScreenSize.Y;
-			float spr_width = TextureSize.X;
-			float spr_heigth = TextureSize.Y;
-
-			// TODO implement...
-			if (Position.X > scr_width)
-			{
-				// ...
-			}
-		}
-
 	}
+
 }
+
