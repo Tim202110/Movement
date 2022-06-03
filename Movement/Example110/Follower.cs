@@ -24,15 +24,14 @@ namespace Movement
 	class Follower : MoverNode
 	{
 		// your private fields here (add Velocity, Acceleration, and MaxSpeed)
-
 		// constructor + call base constructor
 		public Follower() : base("resources/ball.png")
 		{
 			Position = new Vector2(Settings.ScreenSize.X / 2, Settings.ScreenSize.Y / 2);
 			Color = Color.GREEN;
 			Velocity = new Vector2(0f, 0f);
-			Acceleration = new Vector2(-40f, 30f);
-			MaxSpeed = 1000f;
+			Acceleration = new Vector2(0f, 0f);
+			MaxSpeed = 50f;
 		}
 
 		// Update is called every frame
@@ -40,6 +39,7 @@ namespace Movement
 		{
 			Follow(deltaTime);
 			BounceEdges();
+			limit();
 		}
 
 		// your own private methods
@@ -48,9 +48,10 @@ namespace Movement
 			Vector2 mouse = Raylib.GetMousePosition();
 			// Console.WriteLine(mouse);
 			
-			Position = mouse; // incorrect!!
-
+			Vector2 dir = Raylib.GetMousePosition() - Position;
 			// TODO implement
+			
+			Acceleration = dir;
 			Velocity += Acceleration * deltaTime;
 			Position += Velocity * deltaTime;
 		}
