@@ -1,3 +1,4 @@
+using System;
 using System.Numerics; // Vector2
 using Raylib_cs; // Color
 
@@ -20,7 +21,7 @@ Methods:
 
 namespace Movement
 {
-	class BouncingBall : SpriteNode
+	class BouncingBall : MoverNode
 	{
 		// your private fields here (add Velocity, Acceleration, addForce method)
 
@@ -37,38 +38,22 @@ namespace Movement
 		{
 			Fall(deltaTime);
 			BounceEdges();
+
+			Console.WriteLine(Acceleration.Length());
 		}
 
 		// your own private methods
 		private void Fall(float deltaTime)
 		{
 			// TODO implement
-			// Position += Velocity * deltaTime;
+			Velocity += Acceleration * deltaTime;
+			Position += Velocity * deltaTime;
 
 			Vector2 wind = new Vector2(1.8f, 0.0f);
 			Vector2 gravity = new Vector2(0.0f, 9.8f);
 
 			AddForce(wind);
 			AddForce(gravity);
-		}
-
-		private void AddForce(Vector2 force)
-		{
-			// TODO implement
-		}
-
-		private void BounceEdges()
-		{
-			float scr_width = Settings.ScreenSize.X;
-			float scr_height = Settings.ScreenSize.Y;
-			float spr_width = TextureSize.X;
-			float spr_heigth = TextureSize.Y;
-
-			// TODO implement...
-			if (Position.X > scr_width)
-			{
-				// ...
-			}
 		}
 
 	}
