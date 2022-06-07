@@ -24,8 +24,6 @@ namespace Movement
 	class BouncingBall : MoverNode
 	{
 		// your private fields here (add Velocity, Acceleration, addForce method)
-
-
 		// constructor + call base constructor
 		public BouncingBall() : base("resources/ball.png")
 		{
@@ -49,11 +47,13 @@ namespace Movement
 			Velocity += Acceleration * deltaTime;
 			Position += Velocity * deltaTime;
 
-			Vector2 wind = new Vector2(1.8f, 0.0f);
-			Vector2 gravity = new Vector2(0.0f, 9.8f);
+			// e
 
-			AddForce(wind);
-			AddForce(gravity);
+			Vector2 Wind= new Vector2(1.8f, 0.0f);
+			Vector2 Gravity = new Vector2(0.0f, 9.8f);
+			
+			AddForce(Wind);
+			AddForce(Gravity);
 		}
 
 	}
