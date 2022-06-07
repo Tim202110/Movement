@@ -29,31 +29,22 @@ namespace Movement
 		{
 			Position = new Vector2(Settings.ScreenSize.X / 2, Settings.ScreenSize.Y / 2);
 			Color = Color.GREEN;
-			Velocity = new Vector2(0f, 0f);
-			Acceleration = new Vector2(0f, 0f);
-			MaxSpeed = 50f;
 		}
 
 		// Update is called every frame
 		public override void Update(float deltaTime)
 		{
-			Follow(deltaTime);
-			BounceEdges();
-			limit();
+			Follow();
+			Move(deltaTime);
 		}
 
 		// your own private methods
-		private void Follow(float deltaTime)
+		private void Follow()
 		{
 			Vector2 mouse = Raylib.GetMousePosition();
 			// Console.WriteLine(mouse);
-			
-			Vector2 dir = Raylib.GetMousePosition() - Position;
-			// TODO implement
-			
-			Acceleration = dir;
-			Velocity += Acceleration * deltaTime;
-			Position += Velocity * deltaTime;
+			Vector2 dir = mouse - Position;
+			Acceleration = Vector2.Normalize(dir) * 1000;
 		}
 	}
 
