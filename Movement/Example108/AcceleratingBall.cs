@@ -30,13 +30,13 @@ namespace Movement
 			Position = new Vector2(Settings.ScreenSize.X / 2, Settings.ScreenSize.Y / 4);
 			Color = Color.RED;
 			Velocity = new Vector2(0f, 0f);
-			Acceleration = new Vector2(-40f, 30f);
 			MaxSpeed = 1000f;
 		}
 
 		// Update is called every frame
 		public override void Update(float deltaTime)
 		{
+			Acceleration = new Vector2(-40f, 30f);
 			Move(deltaTime);
 			WrapEdges();
 		     Console.WriteLine(Velocity.Length());

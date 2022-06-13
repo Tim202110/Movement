@@ -42,7 +42,7 @@ namespace Movement
 			Velocity += Acceleration * deltaTime;
 			Position += Velocity * deltaTime;
 			// Reset acceleration
-
+			Acceleration *= 0;
 		}
 
 		protected void AddForce(Vector2 force)

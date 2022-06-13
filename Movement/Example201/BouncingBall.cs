@@ -35,6 +35,7 @@ namespace Movement
 		public override void Update(float deltaTime)
 		{
 			Fall(deltaTime);
+			Move(deltaTime);
 			BounceEdges();
 
 			Console.WriteLine(Acceleration.Length());
@@ -43,14 +44,9 @@ namespace Movement
 		// your own private methods
 		private void Fall(float deltaTime)
 		{
-			// TODO implement
-			Velocity += Acceleration * deltaTime;
-			Position += Velocity * deltaTime;
 
-			// e
-
-			Vector2 Wind= new Vector2(1.8f, 0.0f);
-			Vector2 Gravity = new Vector2(0.0f, 9.8f);
+			Vector2 Wind= new Vector2(150f, 0.0f);
+			Vector2 Gravity = new Vector2(0.0f, 980f);
 			
 			AddForce(Wind);
 			AddForce(Gravity);

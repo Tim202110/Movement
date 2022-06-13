@@ -21,7 +21,7 @@ Methods:
 
 namespace Movement
 {
-	class SpaceShip : SpriteNode
+	class SpaceShip : MoverNode
 	{
 		// your private fields here (rotSpeed, thrustForce)
 		private float rotSpeed;
@@ -42,27 +42,6 @@ namespace Movement
 		{
 			Move(deltaTime);
 			WrapEdges();
-		}
-
-		// your own private methods
-		private void Move(float deltaTime)
-		{
-			// TODO implement
-			// Position += Velocity * deltaTime;
-		}
-
-		private void WrapEdges()
-		{
-			float scr_width = Settings.ScreenSize.X;
-			float scr_height = Settings.ScreenSize.Y;
-			float spr_width = TextureSize.X;
-			float spr_heigth = TextureSize.Y;
-
-			// TODO implement...
-			if (Position.X > scr_width)
-			{
-				// ...
-			}
 		}
 
 		public void RotateRight(float deltaTime)
