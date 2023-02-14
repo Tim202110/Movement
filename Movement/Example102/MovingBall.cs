@@ -23,7 +23,7 @@ namespace Movement
 	class MovingBall : MoverNode
 	{
 		// constructor + call base constructor
-		public MovingBall() : base("resources/bigball.png")
+		public MovingBall() : base("resources/dvdlogo.png")
 		{
 			Position = new Vector2(Settings.ScreenSize.X / 2, Settings.ScreenSize.Y / 4);
 			Color = Color.ORANGE;
