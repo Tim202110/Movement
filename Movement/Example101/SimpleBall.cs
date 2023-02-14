@@ -59,18 +59,22 @@ namespace Movement
 			// TODO implement...
 			if (Position.X > scr_width - spr_width / 2)
 			{
+				Position.X = scr_width - spr_width / 2;
 				speedx *= -1;
 			}
 			if (Position.X < 0 + spr_width / 2)
 			{
+				Position.X = 0 + spr_width / 2;
 				speedx *= -1;
 			}
 			if (Position.Y > scr_height - spr_height / 2)
 			{
+				Position.Y = scr_height - spr_height / 2;
 				speedy *= -1;
 			}
 			if (Position.Y < 0 + spr_height / 2)
 			{
+				Position.Y = 0 + spr_height / 2;
 				speedy *= -1;
 			}
 		}
