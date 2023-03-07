@@ -8,6 +8,11 @@ namespace Movement
 	class ParticleSystem : Node
 	{
 		// your private fields here (add Velocity, Acceleration, and MaxSpeed)
+		//private Vector2 velocity;
+		//private Vector2 acceleration;
+
+		//private float maxspeed;
+
 		List<Particle> particles;
 		private List<Color> colors;
 
@@ -38,13 +43,19 @@ namespace Movement
 				particles.Add(p);
 				p.Rotation = (float)Math.Atan2(pos.Y, pos.X);
 				AddChild(p);
+				p.force = pos;
+				
+				if (p.isDead() == true)
+				{	
+					particles.Remove(p);
+				}
 			}
 		}
 
 		// Update is called every frame
 		public override void Update(float deltaTime)
 		{
-			
+
 		}
 
 	}

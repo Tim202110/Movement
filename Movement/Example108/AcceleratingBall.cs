@@ -36,13 +36,11 @@ namespace Movement
 		// Update is called every frame
 		public override void Update(float deltaTime)
 		{
-			Acceleration = new Vector2(-40f, 30f);
-			Move(deltaTime);
 			WrapEdges();
-		     Console.WriteLine(Velocity.Length());
-
+			Acceleration = new Vector2(-40f, 30f);
 			limit();
+			Move(deltaTime);
+		    Console.WriteLine(Velocity.Length());
 		}
-
 	}
 }
