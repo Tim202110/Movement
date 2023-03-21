@@ -8,10 +8,12 @@ namespace Movement
 	class ParticleSystem : Node
 	{
 		// your private fields here (add Velocity, Acceleration, and MaxSpeed)
-		//private Vector2 velocity;
-		//private Vector2 acceleration;
+		private Vector2 velocity;
+		private Vector2 acceleration;
 
 		//private float maxspeed;
+		float time;
+		float timeDelay;
 
 		List<Particle> particles;
 		private List<Color> colors;
@@ -19,7 +21,12 @@ namespace Movement
 		// constructor + call base constructor
 		public ParticleSystem(float x, float y) : base()
 		{
+			time = 0f;
+			timeDelay = 1f;
+
 			Position = new Vector2(x, y);
+			velocity = new Vector2(0f, 0f);
+			acceleration = new Vector2(0f, 0f);
 
 			colors = new List<Color>();
 			colors.Add(Color.WHITE);
@@ -32,8 +39,18 @@ namespace Movement
 			colors.Add(Color.YELLOW);
 
 			particles = new List<Particle>();
+		}
+
+		// Update is called every frame
+		public override void Update(float deltaTime)
+		{
+			Particles(deltaTime);
+		}
+
+		void Particles(float deltaTime) 
+		{
 			Random rand = new Random();
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < deltaTime; i++)
 			{
 				float randX = (float)rand.NextDouble();
 				float randY = (float)rand.NextDouble();
@@ -43,19 +60,13 @@ namespace Movement
 				particles.Add(p);
 				p.Rotation = (float)Math.Atan2(pos.Y, pos.X);
 				AddChild(p);
-				p.force = pos;
-				
+				p.Velocity = pos;
+
 				if (p.isDead() == true)
 				{	
 					particles.Remove(p);
 				}
 			}
-		}
-
-		// Update is called every frame
-		public override void Update(float deltaTime)
-		{
-
 		}
 
 	}

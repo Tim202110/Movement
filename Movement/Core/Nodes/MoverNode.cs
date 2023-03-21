@@ -57,6 +57,17 @@ namespace Movement
 				Acceleration = new Vector2();
 			}
 		}
+
+		// protected Vector2 Limit(Vector2 vec2, float max)
+		// {
+		// 	Vector2 limited = vec2;
+		// 	if(limited.Length() > max)
+		// 	{
+		// 		limited = Vector2.Normalize(limited);
+		// 		limited *= max;
+		// 	}
+		// 	return limited;
+		// }
 		
 		protected void BounceEdges()
 		{

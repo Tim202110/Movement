@@ -25,7 +25,8 @@ namespace Movement
 	class Particle : MoverNode
 	{
 		// your private fields here (add Velocity, Acceleration, and MaxSpeed)
-		public Vector2 force;
+		public Vector2 wind;
+		public Vector2 Gravity;
 		float lifespan;
 
 		// constructor + call base constructor
@@ -35,18 +36,21 @@ namespace Movement
 			Scale = new Vector2(0.25f, 0.25f);
 			Color = color;
 
-			lifespan = 255;
-			MaxSpeed = 500;
+			Velocity = new Vector2(0f, 0f);
+			Acceleration = new Vector2(0f, 0f);
+			lifespan = 255f;
+
 		}
 
 		// Update is called every frame
 		public override void Update(float deltaTime)
 		{
+			//Acceleration = new Vector2(50f, 100f);
+			//limit();
+			Fall(deltaTime);
 			Move(deltaTime);
-			limit();
-			AddForce(force);
-			WrapEdges();
-			lifespan -= 5;
+			//BounceEdges();
+			lifespan -= 2.0f;
 		}
 
 		public bool isDead()
@@ -58,5 +62,15 @@ namespace Movement
 				return false;
 			}
 		}
+
+		void Fall(float deltaTime)
+		{
+			Vector2 wind = new Vector2(50f, 0f);
+			Vector2 Gravity = new Vector2(0f, 200f);
+
+			AddForce(wind);
+			AddForce(Gravity);
+		}
+		
 	}
 }

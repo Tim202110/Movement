@@ -38,6 +38,7 @@ namespace Movement
 		{
 			WrapEdges();
 			Acceleration = new Vector2(-40f, 30f);
+			//Velocity = Limit(Velocity, MaxSpeed);
 			limit();
 			Move(deltaTime);
 		    Console.WriteLine(Velocity.Length());
