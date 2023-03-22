@@ -10,10 +10,7 @@ namespace Movement
 		// your private fields here (add Velocity, Acceleration, and MaxSpeed)
 		private Vector2 velocity;
 		private Vector2 acceleration;
-
 		//private float maxspeed;
-		float time;
-		float timeDelay;
 
 		List<Particle> particles;
 		private List<Color> colors;
@@ -21,8 +18,6 @@ namespace Movement
 		// constructor + call base constructor
 		public ParticleSystem(float x, float y) : base()
 		{
-			time = 0f;
-			timeDelay = 1f;
 
 			Position = new Vector2(x, y);
 			velocity = new Vector2(0f, 0f);
@@ -57,9 +52,10 @@ namespace Movement
 				Vector2 pos = new Vector2(randX, randY) * 200;
 				pos -= new Vector2(100, 100);
 				Particle p = new Particle(pos.X, pos.Y, colors[rand.Next()%colors.Count]);
+				p.Rotation = (float)(Math.Atan2(pos.Y, pos.X));
 				particles.Add(p);
-				p.Rotation = (float)Math.Atan2(pos.Y, pos.X);
 				AddChild(p);
+
 				p.Velocity = pos;
 
 				if (p.isDead() == true)

@@ -25,8 +25,6 @@ namespace Movement
 	class Particle : MoverNode
 	{
 		// your private fields here (add Velocity, Acceleration, and MaxSpeed)
-		public Vector2 wind;
-		public Vector2 Gravity;
 		float lifespan;
 
 		// constructor + call base constructor
