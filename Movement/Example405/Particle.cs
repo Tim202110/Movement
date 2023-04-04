@@ -61,13 +61,16 @@ namespace Movement
 		// 	}
 		// }
 
+		//Add wind and gravity in this function.
 		void Fall(float deltaTime)
 		{
 			Vector2 wind = new Vector2(50f, 0f);
 			Vector2 Gravity = new Vector2(0f, 200f);
 
+			//add rotation to velocity so the triangle points towards the direction of movement.
 			Rotation = Math.Atan2(Velocity.Y, Velocity.X);
 
+			//Adding the wind vector and the gravity vector as forces
 			AddForce(wind);
 			AddForce(Gravity);
 		}
