@@ -66,6 +66,8 @@ namespace Movement
 			Vector2 wind = new Vector2(50f, 0f);
 			Vector2 Gravity = new Vector2(0f, 200f);
 
+			Rotation = Math.Atan2(Velocity.Y, Velocity.X);
+
 			AddForce(wind);
 			AddForce(Gravity);
 		}

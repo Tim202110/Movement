@@ -52,7 +52,7 @@ namespace Movement
 				Vector2 pos = new Vector2(randX, randY) * 200;
 				pos -= new Vector2(100, 100);
 				Particle p = new Particle(pos.X, pos.Y, colors[rand.Next()%colors.Count]);
-				p.Rotation = (float)(Math.Atan2(pos.Y, pos.X));
+				//p.Rotation = (float)(Math.Atan2(pos.Y, pos.X));
 				particles.Add(p);
 				AddChild(p);
 
