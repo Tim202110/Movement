@@ -45,7 +45,7 @@ namespace Movement
 		void Particles(float deltaTime) 
 		{
 			Random rand = new Random();
-			for (int i = 0; i < deltaTime; i++)
+			for (int i = 0; i < deltaTime + 1; i++)
 			{
 				float randX = (float)rand.NextDouble();
 				float randY = (float)rand.NextDouble();
@@ -57,13 +57,12 @@ namespace Movement
 				AddChild(p);
 
 				p.Velocity = pos;
-
-				if (p.isDead() == true)
+				Console.WriteLine(particles.Count);
+				if (particles.Count >= 100)
 				{	
-					particles.Remove(p);
+					particles.Clear();
 				}
 			}
 		}
-
 	}
 }
