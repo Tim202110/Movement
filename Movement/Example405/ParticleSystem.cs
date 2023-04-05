@@ -71,13 +71,24 @@ namespace Movement
 				p.Velocity = pos;
 
 				// Checking particle count.
-				// Console.WriteLine(particles.Count);
+				Console.WriteLine("Particles: " + particles.Count);
+				Console.WriteLine("Children Particles: " + Children.Count);
 
-				// If particle count is at 100 clear the list and continue.
+				//If particle count is at 100 clear the list and continue.
 				if (particles.Count >= 100)
 				{	
 					particles.Clear();
 				}
+				if (Children.Count >= 100)
+				{
+					RemoveChild(p);
+				}
+
+				// if(p.isDead() == true)
+				// {
+				// 	particles.Remove(p);
+				// 	RemoveChild(p);
+				// }
 			}
 		}
 	}
