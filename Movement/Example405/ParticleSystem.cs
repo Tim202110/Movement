@@ -10,8 +10,10 @@ namespace Movement
 		// your private fields here (add Velocity, Acceleration, and MaxSpeed)
 		private Vector2 velocity;
 		private Vector2 acceleration;
-		//private float maxspeed; Didn't need this at all...
 
+		// Fields
+
+		private bool StopAdd = false;
 		//particle list
 		List<Particle> particles;
 		private List<Color> colors;
@@ -75,20 +77,24 @@ namespace Movement
 				Console.WriteLine("Children Particles: " + Children.Count);
 
 				//If particle count is at 100 clear the list and continue.
-				if (particles.Count >= 100)
-				{	
-					particles.Clear();
-				}
-				if (Children.Count >= 100)
-				{
-					RemoveChild(p);
-				}
-
-				// if(p.isDead() == true)
-				// {
-				// 	particles.Remove(p);
-				// 	RemoveChild(p);
+				// if (particles.Count >= 100)
+				// {	
+				// 	particles.Clear();
 				// }
+				// if (Children.Count >= 100)
+				// {
+				// 	StopAdd = true;
+				// 	RemoveChild(p);
+				// 	//Node LastItem = Children[Children.Count - 1];
+				// 	Children.Insert(0, Children[Children.Count - 1]);
+				// }
+
+				if (particles.Count >= 100)
+				{
+					Particle pp = particles[particles.Count - 1];
+					particles.RemoveAt(particles.Count - 1);
+					particles.Insert(0, pp);
+				}
 			}
 		}
 	}

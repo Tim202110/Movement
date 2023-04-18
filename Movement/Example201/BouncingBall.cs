@@ -45,8 +45,8 @@ namespace Movement
 		private void Fall(float deltaTime)
 		{
 
-			Vector2 Wind= new Vector2(150f, 0.0f);
-			Vector2 Gravity = new Vector2(0.0f, 980f);
+			Vector2 Wind= new Vector2(150.0f, 0.0f);
+			Vector2 Gravity = new Vector2(0.0f, 981.0f);
 			
 			AddForce(Wind);
 			AddForce(Gravity);
