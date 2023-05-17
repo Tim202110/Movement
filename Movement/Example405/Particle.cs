@@ -29,11 +29,16 @@ namespace Movement
 		// constructor + call base constructor
 		public Particle(float x, float y, Color color) : base("resources/spaceship.png")
 		{
+			//position starts at 0, 0;
 			Position = new Vector2(x, y);
+			//How big is the particle?
 			Scale = new Vector2(0.25f, 0.25f);
+			//Add the ability to change colors
 			Color = color;
 
+			//Velocity starts at 0, 0.
 			Velocity = new Vector2(0f, 0f);
+			//Acceleration starts at 0, 0.
 			Acceleration = new Vector2(0f, 0f);
 
 		}
@@ -41,14 +46,18 @@ namespace Movement
 		// Update is called every frame
 		public override void Update(float deltaTime)
 		{
+			//Implement gravity and other forces to the particles movement
 			Fall(deltaTime);
+			//Move the particle.
 			Move(deltaTime);
 		}
 
 		//Add wind and gravity in this function.
 		void Fall(float deltaTime)
 		{
+			//Create wind vector
 			Vector2 wind = new Vector2(90f, 0f);
+			//Create gravity vector
 			Vector2 Gravity = new Vector2(0f, 109.81f);
 
 			//add rotation to velocity so the triangle points towards the direction of movement.
