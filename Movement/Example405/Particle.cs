@@ -56,7 +56,7 @@ namespace Movement
 		void Fall(float deltaTime)
 		{
 			//Create wind vector
-			Vector2 wind = new Vector2(90f, 0f);
+			Vector2 wind = new Vector2(60f, 0f);
 			//Create gravity vector
 			Vector2 Gravity = new Vector2(0f, 109.81f);
 
