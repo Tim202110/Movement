@@ -75,7 +75,6 @@ namespace Movement
 			//Check how many particles it has counted
 			//15 is the best amount in my opinion. You can still see the particles dissapearing.
 			//The ones that go up wont dissapear as soon as they pass the origin zone again.
-
 			if(particles.Count > 15)
 			{
 				//Remove child particle at index 0
