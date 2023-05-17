@@ -47,27 +47,37 @@ namespace Movement
 		// Update is called every frame
 		public override void Update(float deltaTime)
 		{
-			//Put particle creation method into update.
-			//Particles(deltaTime);
-
+			//timer
 			timer += deltaTime;
 
+			//How fast should we go?
 			if (timer >= 0.1f) {
+				//Random X and Y
 				float randX = (float)rand.NextDouble();
 				float randY = (float)rand.NextDouble();
+				//Vector2 vel
 				Vector2 vel = new Vector2(randX, randY) * 200;
 				vel -= new Vector2(100, 100);
+				//Create particles exactly where the particlesystem spawned
 				Particle p = new Particle(0, 0, colors[rand.Next()%colors.Count]);
+				//p.velocity is vel so it wont spawn at random locations but spawns there.
 				p.Velocity = vel;
+				//Adds particles
 				particles.Add(p);
+				//Rotates the particle in direction of where it goes.
 				p.Rotation = (float)Math.Atan2(vel.Y, vel.X);
+				//AddChild to draw the particle
 				AddChild(p);
+				//Timer returns to 0
 				timer = 0.0f;
 			}
 
-			if(particles.Count > 10)
+			//Check how many particles it has counted
+			if(particles.Count > 20)
 			{
+				//Remove child particle at index 0
 				RemoveChild(particles[0]);
+				//Remove particle at index 0
 				particles.RemoveAt(0);
 			}
 		}
