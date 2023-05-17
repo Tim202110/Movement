@@ -58,7 +58,7 @@ namespace Movement
 			//Create wind vector
 			Vector2 wind = new Vector2(60f, 0f);
 			//Create gravity vector
-			Vector2 Gravity = new Vector2(0f, 109.81f);
+			Vector2 Gravity = new Vector2(0f, 200f);
 
 			//add rotation to velocity so the triangle points towards the direction of movement.
 			Rotation = Math.Atan2(Velocity.Y, Velocity.X);
