@@ -1,6 +1,7 @@
 using System; // Console
 using System.Numerics; // Vector2
 using System.Collections.Generic; // List
+using System.Timers;
 using Raylib_cs; // Color
 
 namespace Movement
@@ -11,9 +12,11 @@ namespace Movement
 		private Vector2 velocity;
 		private Vector2 acceleration;
 
-		// Fields
+		Random rand = new Random();
 
-		private bool StopAdd = false;
+		// Fields
+		//int timer = 1;
+		private float timer;
 		//particle list
 		List<Particle> particles;
 		private List<Color> colors;
@@ -45,56 +48,27 @@ namespace Movement
 		public override void Update(float deltaTime)
 		{
 			//Put particle creation method into update.
-			Particles(deltaTime);
-		}
+			//Particles(deltaTime);
 
-		void Particles(float deltaTime) 
-		{
-			//Random number.
-			Random rand = new Random();
+			timer += deltaTime;
 
-			//put particle in a for loop so it can go slower.
-			for (int i = 0; i < deltaTime + 1; i++)
-			{
-				//Random X and Y
+			if (timer >= 0.1f) {
 				float randX = (float)rand.NextDouble();
 				float randY = (float)rand.NextDouble();
-				Vector2 pos = new Vector2(randX, randY) * 200;
-				pos -= new Vector2(100, 100);
-				// Create how a particle works
-				Particle p = new Particle(pos.X, pos.Y, colors[rand.Next()%colors.Count]);
-				// No need for this --> p.Rotation = (float)(Math.Atan2(pos.Y, pos.X));
-				
-				//List adds item. And thus the list count goes up.
+				Vector2 vel = new Vector2(randX, randY) * 200;
+				vel -= new Vector2(100, 100);
+				Particle p = new Particle(0, 0, colors[rand.Next()%colors.Count]);
+				p.Velocity = vel;
 				particles.Add(p);
+				p.Rotation = (float)Math.Atan2(vel.Y, vel.X);
 				AddChild(p);
+				timer = 0.0f;
+			}
 
-				//Particle Velocity is position.
-				p.Velocity = pos;
-
-				// Checking particle count.
-				Console.WriteLine("Particles: " + particles.Count);
-				Console.WriteLine("Children Particles: " + Children.Count);
-
-				//If particle count is at 100 clear the list and continue.
-				// if (particles.Count >= 100)
-				// {	
-				// 	particles.Clear();
-				// }
-				// if (Children.Count >= 100)
-				// {
-				// 	StopAdd = true;
-				// 	RemoveChild(p);
-				// 	//Node LastItem = Children[Children.Count - 1];
-				// 	Children.Insert(0, Children[Children.Count - 1]);
-				// }
-
-				if (particles.Count >= 100)
-				{
-					Particle pp = particles[particles.Count - 1];
-					particles.RemoveAt(particles.Count - 1);
-					particles.Insert(0, pp);
-				}
+			if(particles.Count > 10)
+			{
+				RemoveChild(particles[0]);
+				particles.RemoveAt(0);
 			}
 		}
 	}
