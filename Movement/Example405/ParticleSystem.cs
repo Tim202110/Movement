@@ -73,7 +73,7 @@ namespace Movement
 			}
 
 			//Check how many particles it has counted
-			if(particles.Count > 20)
+			if(particles.Count > 15)
 			{
 				//Remove child particle at index 0
 				RemoveChild(particles[0]);
